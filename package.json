@@ -1,16 +1,32 @@
 {
+  "author": "albertodeagostini.dev@gmail.com",
   "name": "vue-virtualized-list",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.0.1",
   "scripts": {
+    "dev": "vue-cli-service serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e"
+    "test:e2e": "vue-cli-service test:e2e",
+    "demo": "vue-cli-service demo",
+    "docs": "npm run docs:serve",
+    "docs:build": "vue-cli-service docs --mode build",
+    "docs:serve": "vue-cli-service docs --mode serve",
+    "prepublish": "vue-cli-service lint && vue-cli-service docs --mode build && vue-cli-service build",
+    "start": "vue-cli-service serve"
   },
+  "main": "dist/vue-virtualized-list.common.js",
+  "module": "dist/vue-virtualized-list.esm.js",
+  "unpkg": "dist/vue-virtualized-list.umd.min.js",
+  "files": [
+    "dist/vue-virtualized-list.common.js",
+    "dist/vue-virtualized-list.umd.min.js",
+    "dist/vue-virtualized-list.umd.js",
+    "dist/vue-virtualized-list.esm.js",
+    "src"
+  ],
   "dependencies": {
-    "core-js": "^3.4.4",
-    "vue": "^2.6.10"
+    "core-js": "^3.4.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.0",
@@ -18,6 +34,18 @@
     "@vue/cli-plugin-unit-jest": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
     "@vue/test-utils": "1.0.0-beta.29",
-    "vue-template-compiler": "^2.6.10"
-  }
+    "vue-cli-plugin-p11n": "^0.4.0",
+    "vue-template-compiler": "^2.6.10",
+    "vue": "^2.6.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/albertodeago/vue-virtualized-list.git"
+  },
+  "bugs": {
+    "url": "https://github.com/albertodeago/vue-virtualized-list/issues"
+  },
+  "homepage": "https://github.com/albertodeago/vue-virtualized-list/blob/master/README.md",
+  "jsdelivr": "dist/vue-virtualized-list.umd.min.js",
+  "sideeffects": false
 }

@@ -1,0 +1,1 @@
+module.exports = require("./VirtualizedList.vue");
