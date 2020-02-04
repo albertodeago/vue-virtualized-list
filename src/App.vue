@@ -1,14 +1,28 @@
 <template>
   <div id="app">
-    <virtualized-list :items="list"></virtualized-list>
+    <div class="list-container">
+      <virtualized-list :items="list" :item-height="itemH">
+        <template v-slot:default="provided">
+          <div class="from-outside">
+            {{ provided.content }}
+          </div>
+        </template>
+      </virtualized-list>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   data() {
+    const fillArrayWithNumbers = n => {
+        var arr = Array.apply(null, Array(n));
+        return arr.map(function (x, i) { return i });
+    }
+
     return {
-      list: [1,2,3,4,5]
+      list: fillArrayWithNumbers(100).map(i => ({id: i, content: "content-" + i})),
+      itemH: 25
     }
   }
 }
@@ -21,6 +35,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+.list-container {
+  height: 500px;
 }
 </style>

@@ -1,5 +1,7 @@
 # vue-virtualized-list
 
+Work in progress...
+
 ## Project setup
 ```
 npm install
