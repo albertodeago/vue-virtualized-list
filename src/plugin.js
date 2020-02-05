@@ -4,9 +4,11 @@
  */
 
 import Vue from 'vue'
-import VirtualizedList from "./index"
+// import VirtualizedList from "./index"
+import VirtualizedListRender from "./index"
 
-Vue.component(VirtualizedList.name, VirtualizedList)
+// Vue.component(VirtualizedList.name, VirtualizedList)
+Vue.component(VirtualizedListRender.name, VirtualizedListRender)
 
 /*
  * NOTE:

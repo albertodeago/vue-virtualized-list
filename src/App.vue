@@ -2,11 +2,11 @@
   <div id="app">
     <div class="list-container">
       <virtualized-list :items="list" :item-height="itemH">
-        <template v-slot:default="provided">
+        <!-- <template v-slot:default="provided">
           <div class="from-outside">
             {{ provided.content }}
           </div>
-        </template>
+        </template> -->
       </virtualized-list>
     </div>
   </div>
@@ -21,7 +21,7 @@ export default {
     }
 
     return {
-      list: fillArrayWithNumbers(100).map(i => ({id: i, content: "content-" + i})),
+      list: fillArrayWithNumbers(15000).map(i => ({id: i, content: "content-" + i})),
       itemH: 25
     }
   }
@@ -38,6 +38,6 @@ export default {
 }
 
 .list-container {
-  height: 500px;
+  height: 100px;
 }
 </style>
