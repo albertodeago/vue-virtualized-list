@@ -58,7 +58,7 @@ export default {
                     right: 0,
                     top: (this.firstToRender + i) * this.itemHeight + "px"
                 }
-            }, item.content));
+            }, this.$scopedSlots.default(item)));
         }
     },
 

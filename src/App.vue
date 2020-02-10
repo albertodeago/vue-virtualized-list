@@ -2,11 +2,11 @@
   <div id="app">
     <div class="list-container">
       <virtualized-list :items="list" :item-height="itemH">
-        <!-- <template v-slot:default="provided">
+        <template v-slot="provided">
           <div class="from-outside">
-            {{ provided.content }}
+            static text - {{ provided.content }}
           </div>
-        </template> -->
+        </template>
       </virtualized-list>
     </div>
   </div>
