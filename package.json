@@ -45,5 +45,6 @@
   },
   "homepage": "https://github.com/albertodeago/vue-virtualized-list/blob/master/README.md",
   "jsdelivr": "dist/vue-virtualized-list.umd.min.js",
+  "license": "MIT",
   "sideeffects": false
 }

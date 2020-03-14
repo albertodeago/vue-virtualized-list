@@ -1,156 +1,119 @@
 /*!
- * vue-virtualized-list v0.0.1 
+ * vue-virtualized-list v0.0.2 
  * (c) 2020 albertodeagostini.dev@gmail.com
  * Released under the undefined License.
  */
-//
-//
-//
-//
-//
-//
-//
-//
-var script = {
+var VirtualizedListRender = {
   name: "VirtualizedList",
   props: {
+    outerContainerEl: {
+      type: String,
+      default: "div"
+    },
+    outerContainerClass: {
+      type: String,
+      default: "vue-virtualized-list__scroll"
+    },
+    innerContainerEl: {
+      type: String,
+      default: "div"
+    },
+    innerContainerClass: {
+      type: String,
+      default: "vue-virtualized-list"
+    },
     items: {
       type: Array,
+      required: true
+    },
+    itemHeight: {
+      type: Number,
       required: true
     }
   },
   data: function data() {
-    return {};
+    return {
+      firstItemToRender: null,
+      // index of the first item to render
+      lastItemToRender: null,
+      // index of the last item to render
+      benchBefore: 5,
+      // amount of items to render before the first
+      benchAfter: 5,
+      // amount of items to render after the last
+      scrollTop: 0 // current scrolltop offset of the scrollable container
+
+    };
+  },
+  computed: {
+    firstToRender: function firstToRender() {
+      return Math.max(0, this.firstItemToRender - this.benchBefore);
+    },
+    lastToRender: function lastToRender() {
+      return Math.min(this.items.length, this.lastItemToRender + this.benchAfter);
+    }
+  },
+  mounted: function mounted() {
+    this.firstItemToRender = 0;
+    this.lastItemToRender = Math.floor(this.$el.clientHeight / this.itemHeight); // console.log("mounted", this.firstItemToRender, this.lastItemToRender);
+
+    this.$el.addEventListener("scroll", this.onScroll, false);
+  },
+  methods: {
+    onScroll: function onScroll(evt) {
+      this.scrollTop = evt.target.scrollTop;
+      this.firstItemToRender = Math.floor(this.scrollTop / this.itemHeight);
+      this.lastItemToRender = this.firstItemToRender + Math.ceil(this.$el.clientHeight / this.itemHeight); // console.log("scroll", this.firstItemToRender, this.lastItemToRender);
+    },
+    getRenderedItems: function getRenderedItems(h) {
+      var _this = this;
+
+      // return html
+      var toRender = this.items.slice(this.firstToRender, this.lastToRender);
+      return toRender.map(function (item, i) {
+        return h("div", {
+          style: {
+            position: "absolute",
+            left: 0,
+            right: 0,
+            top: (_this.firstToRender + i) * _this.itemHeight + "px"
+          }
+        }, _this.$scopedSlots.default(item));
+      });
+    }
+  },
+  render: function render(h) {
+    var list = this.getRenderedItems(h);
+    var renderScroll = h(this.innerContainerEl, {
+      class: this.innerContainerClass,
+      style: Object.assign({
+        dsplay: "block",
+        height: this.items.length * this.itemHeight + "px"
+      })
+    }, list);
+    var renderList = h(this.outerContainerEl, {
+      class: this.outerContainerClass,
+      style: {
+        height: "100%",
+        overflow: "auto",
+        position: "relative",
+        display: "block"
+      }
+    }, [renderScroll]);
+    return renderList;
   }
 };
 
-function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier
-/* server only */
-, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
-  if (typeof shadowMode !== 'boolean') {
-    createInjectorSSR = createInjector;
-    createInjector = shadowMode;
-    shadowMode = false;
-  } // Vue.extend constructor export interop.
-
-
-  var options = typeof script === 'function' ? script.options : script; // render functions
-
-  if (template && template.render) {
-    options.render = template.render;
-    options.staticRenderFns = template.staticRenderFns;
-    options._compiled = true; // functional template
-
-    if (isFunctionalTemplate) {
-      options.functional = true;
-    }
-  } // scopedId
-
-
-  if (scopeId) {
-    options._scopeId = scopeId;
-  }
-
-  var hook;
-
-  if (moduleIdentifier) {
-    // server build
-    hook = function hook(context) {
-      // 2.3 injection
-      context = context || // cached call
-      this.$vnode && this.$vnode.ssrContext || // stateful
-      this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext; // functional
-      // 2.2 with runInNewContext: true
-
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__;
-      } // inject component styles
-
-
-      if (style) {
-        style.call(this, createInjectorSSR(context));
-      } // register component module identifier for async chunk inference
-
-
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier);
-      }
-    }; // used by ssr in case component is cached and beforeCreate
-    // never gets called
-
-
-    options._ssrRegister = hook;
-  } else if (style) {
-    hook = shadowMode ? function () {
-      style.call(this, createInjectorShadow(this.$root.$options.shadowRoot));
-    } : function (context) {
-      style.call(this, createInjector(context));
-    };
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // register for functional component in vue file
-      var originalRender = options.render;
-
-      options.render = function renderWithStyleInjection(h, context) {
-        hook.call(context);
-        return originalRender(h, context);
-      };
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate;
-      options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
-    }
-  }
-
-  return script;
-}
-
-var normalizeComponent_1 = normalizeComponent;
-
-/* script */
-const __vue_script__ = script;
-
-/* template */
-var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"virtualized-list"},[_c('div',{staticClass:"virtualized-list__container"},_vm._l((_vm.items),function(item){return _c('div',{staticClass:"virtualized-list__item"},[_vm._v(_vm._s(item))])}),0)])};
-var __vue_staticRenderFns__ = [];
-
-  /* style */
-  const __vue_inject_styles__ = undefined;
-  /* scoped */
-  const __vue_scope_id__ = undefined;
-  /* module identifier */
-  const __vue_module_identifier__ = undefined;
-  /* functional template */
-  const __vue_is_functional_template__ = false;
-  /* style inject */
-  
-  /* style inject SSR */
-  
-
-  
-  var VirtualizedList = normalizeComponent_1(
-    { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
-    __vue_inject_styles__,
-    __vue_script__,
-    __vue_scope_id__,
-    __vue_is_functional_template__,
-    __vue_module_identifier__,
-    undefined,
-    undefined
-  );
-
-var VirtualizedList$1 = /*#__PURE__*/Object.freeze({
+var VirtualizedListRender$1 = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    'default': VirtualizedList
+    'default': VirtualizedListRender
 });
 
 function getCjsExportFromNamespace (n) {
 	return n && n['default'] || n;
 }
 
-var require$$0 = getCjsExportFromNamespace(VirtualizedList$1);
+var require$$0 = getCjsExportFromNamespace(VirtualizedListRender$1);
 
 var src = require$$0;
 
