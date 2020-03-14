@@ -2,7 +2,7 @@
 
 A virtual list. Useful when you need to show lange amount of data.
 It only render the DOM elements it needs.
-It has less functionality compared to other virtual list libraries but it's under 5kb before gzip
+It has less functionality compared to other virtual list libraries but it's **under 5kb** before gzip
 
 
 ## Getting started

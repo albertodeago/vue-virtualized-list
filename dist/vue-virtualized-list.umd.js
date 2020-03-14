@@ -1,7 +1,7 @@
 /*!
  * vue-virtualized-list v0.0.2 
  * (c) 2020 albertodeagostini.dev@gmail.com
- * Released under the undefined License.
+ * Released under the MIT License.
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
