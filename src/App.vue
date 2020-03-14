@@ -15,10 +15,7 @@
 <script>
 export default {
   data() {
-    const fillArrayWithNumbers = n => {
-        var arr = Array.apply(null, Array(n));
-        return arr.map(function (x, i) { return i });
-    }
+    const fillArrayWithNumbers = n => Array.apply(null, Array(n)).map((x, i) => i);
 
     return {
       list: fillArrayWithNumbers(15000).map(i => ({id: i, content: "content-" + i})),
@@ -38,6 +35,6 @@ export default {
 }
 
 .list-container {
-  height: 100px;
+  height: 500px;
 }
 </style>

@@ -2,6 +2,22 @@ export default {
     name: "VirtualizedList",
 
     props: {
+        outerContainerEl: {
+            type: String,
+            default: "div"
+        },
+        outerContainerClass: {
+            type: String,
+            default: "vue-virtualized-list__scroll"
+        },
+        innerContainerEl: {
+            type: String,
+            default: "div"
+        },
+        innerContainerClass: {
+            type: String,
+            default: "vue-virtualized-list"
+        },
         items: {
             type: Array,
             required: true
@@ -35,7 +51,7 @@ export default {
     mounted() {
         this.firstItemToRender = 0;
         this.lastItemToRender = Math.floor(this.$el.clientHeight / this.itemHeight);
-        console.log("mounted", this.firstItemToRender, this.lastItemToRender);
+        // console.log("mounted", this.firstItemToRender, this.lastItemToRender);
         
         this.$el.addEventListener("scroll", this.onScroll, false)
     },
@@ -45,7 +61,7 @@ export default {
             this.scrollTop = evt.target.scrollTop;
             this.firstItemToRender = Math.floor(this.scrollTop / this.itemHeight);
             this.lastItemToRender = this.firstItemToRender + Math.ceil(this.$el.clientHeight / this.itemHeight);
-            console.log("scroll", this.firstItemToRender, this.lastItemToRender);
+            // console.log("scroll", this.firstItemToRender, this.lastItemToRender);
         },
 
         getRenderedItems(h) {
@@ -64,19 +80,20 @@ export default {
 
     render(h) {
         const list = this.getRenderedItems(h);
-        const renderScroll = h("div", {
-            class: "vue-virtualized-list__scroll",
+        const renderScroll = h(this.innerContainerEl, {
+            class: this.innerContainerClass,
             style: Object.assign({
                 dsplay: "block",
                 height: this.items.length * this.itemHeight + "px"
             })
         }, list);
-        const renderList = h("div", {
-            class: "vue-virtualized-list",
+        const renderList = h(this.outerContainerEl, {
+            class: this.outerContainerClass,
             style: {
                 height: "100%",
                 overflow: "auto",
-                position: "relative"
+                position: "relative",
+                display: "block"
             }
         }, [renderScroll]);
         return renderList;
