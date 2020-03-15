@@ -4,10 +4,6 @@ A virtual list (or virtual scroll) is a component to handle a large number of da
 It achieve this goal by render only the needed one.  
 This component has less functionality compared to other virtual list libraries but it's **under 5kb** before gzip
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/2e0807f3-0bda-4804-94ec-b63aef0e4834/deploy-status)](https://app.netlify.com/sites/vue-virtualized-list/deploys)
-
-[Documetantion](https://vue-virtualized-list.netlify.com)
-
 ## Getting started
 
 To install the package in your application
