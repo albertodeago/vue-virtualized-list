@@ -3,7 +3,7 @@
     <div class="list-container">
       <virtualized-list :items="list" :item-height="itemH">
         <template v-slot="provided">
-          <div class="from-outside">
+          <div class="item">
             static text - {{ provided.content }}
           </div>
         </template>
