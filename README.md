@@ -6,7 +6,7 @@ It has less functionality compared to other virtual list libraries but it's **un
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/2e0807f3-0bda-4804-94ec-b63aef0e4834/deploy-status)](https://app.netlify.com/sites/vue-virtualized-list/deploys)
 
-[Documetantion](https://vue-virtualized-list.netlify.com)
+[Demo and Documetantion](https://vue-virtualized-list.netlify.com)
 
 
 ## Getting started
