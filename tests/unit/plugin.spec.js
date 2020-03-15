@@ -89,7 +89,6 @@ describe('VirtualizedList', () => {
     // console.log(innerWrapper.html())
     
     items.forEach(item => {
-      console.log(item.id)
       expect(wrapper.contains(`#${item.id}.item`)).toBe(true)
     })
   })

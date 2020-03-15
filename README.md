@@ -91,13 +91,25 @@ npm run dev
 ```bash
 npm run build
 ```
-##### Run your unit tests
+##### Run all the tests
+```bash
+npm run test
+```
+###### Run unit tests
 ```bash
 npm run test:unit
 ```
-##### Run your end-to-end tests
+Or you can run them in watch mode
+```bash
+npm run test:unit:w
+```
+###### Run end-to-end tests
 ```bash
 npm run test:e2e
+```
+Or you can run them in watch mode with amazing cypress experience
+```bash
+npm run test:e2e:w
 ```
 ##### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
