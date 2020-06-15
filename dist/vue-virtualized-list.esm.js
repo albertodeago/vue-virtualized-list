@@ -87,7 +87,7 @@ var VirtualizedListRender = {
     var renderScroll = h(this.innerContainerEl, {
       class: this.innerContainerClass,
       style: Object.assign({
-        dsplay: "block",
+        display: "block",
         height: this.items.length * this.itemHeight + "px"
       })
     }, list);
