@@ -25,15 +25,27 @@ export default {
         itemHeight: {
             type: Number,
             required: true
-        }
+        },
+        firstItemToRender: { // index of the first item to render
+            type: Number,
+            default: null
+        },
+        lastItemToRender: { // index of the last item to render        
+            type: Number,
+            default: null
+        },
+        benchBefore: { // amount of items to render before the first
+            type: Number,
+            default: 5
+        },
+        benchAfter: { // amount of items to render after the last
+            type: Number,
+            default: 5
+        }	        
     },
 
     data() {
         return {
-            firstItemToRender: null, // index of the first item to render
-            lastItemToRender: null, // index of the last item to render
-            benchBefore: 5, // amount of items to render before the first
-            benchAfter: 5, // amount of items to render after the last
             scrollTop: 0 // current scrolltop offset of the scrollable container
         }
     },
