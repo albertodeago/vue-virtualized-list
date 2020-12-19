@@ -2,22 +2,39 @@ export default {
     name: "VirtualizedList",
 
     props: {
+
+        /**
+         * The type of element of the outer container
+         */
         outerContainerEl: {
             type: String,
             default: "div"
         },
+
+        /**
+         * The class of element of the outer container
+         */
         outerContainerClass: {
             type: String,
             default: "vue-virtualized-list__scroll"
         },
+
+        /**
+         * The type of element of the inner container
+         */
         innerContainerEl: {
             type: String,
             default: "div"
         },
+
+        /**
+         * The class of element of the inner container
+         */
         innerContainerClass: {
             type: String,
             default: "vue-virtualized-list"
         },
+
         items: {
             type: Array,
             required: true
@@ -48,10 +65,12 @@ export default {
         }
     },
 
+    /**
+     * Setup the initial state and attach the scroll listener
+     */
     mounted() {
         this.firstItemToRender = 0;
         this.lastItemToRender = Math.floor(this.$el.clientHeight / this.itemHeight);
-        // console.log("mounted", this.firstItemToRender, this.lastItemToRender);
         
         this.$el.addEventListener("scroll", this.onScroll, false)
     },
@@ -61,11 +80,13 @@ export default {
             this.scrollTop = evt.target.scrollTop;
             this.firstItemToRender = Math.floor(this.scrollTop / this.itemHeight);
             this.lastItemToRender = this.firstItemToRender + Math.ceil(this.$el.clientHeight / this.itemHeight);
-            // console.log("scroll", this.firstItemToRender, this.lastItemToRender);
         },
 
+        /**
+         * Return the VNode of the elements to render
+         * @param {Function} h - Vue render function 
+         */
         getRenderedItems(h) {
-            // return html
             let toRender = this.items.slice(this.firstToRender, this.lastToRender);
             return toRender.map((item, i) => h("div", {
                 style: {
