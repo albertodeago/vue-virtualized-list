@@ -54,4 +54,15 @@ describe("vue-virtualized-list", () => {
       .get(".item:nth(-4)").should("not.be.visible")
       .get(".item:nth(-6)").should("be.visible")
   })
+
+  it.only("should render the specified amount of item as bench", () => {
+    cy.visit("/")
+    cy.get(".vue-virtualized-list__scroll")
+      .scrollTo(0, 1000)
+      .get(".item").should("have.length", 30)
+    cy.get("#bench")
+      .type("{backspace}10")
+    cy.get(".vue-virtualized-list__scroll")
+    .get(".item").should("have.length", 40)
+  })
 })

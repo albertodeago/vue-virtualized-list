@@ -42,6 +42,16 @@ export default {
         itemHeight: {
             type: Number,
             required: true
+        },
+
+        /**
+         * Indicates the amount of elements not visible to render. They are kind of useful 
+         * if the user scrolls very fast or in similar cases.
+         * In my tests 5 seems to be ideal most of the times 
+         */
+        bench: {
+            type: Number,
+            default: 5
         }
     },
 
@@ -49,19 +59,19 @@ export default {
         return {
             firstItemToRender: null, // index of the first item to render
             lastItemToRender: null, // index of the last item to render
-            benchBefore: 5, // amount of items to render before the first
-            benchAfter: 5, // amount of items to render after the last
             scrollTop: 0 // current scrolltop offset of the scrollable container
         }
     },
 
     computed: {
         firstToRender() {
-            return Math.max(0, this.firstItemToRender - this.benchBefore);
+            return Math.max(0, this.firstItemToRender - this.bench);
         },
 
         lastToRender() {
-            return Math.min(this.items.length, this.lastItemToRender + this.benchAfter);
+            return Math.min(this.items.length, this.lastItemToRender + this.bench);
+        }
+    },
         }
     },
 
