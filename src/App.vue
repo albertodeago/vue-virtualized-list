@@ -1,14 +1,23 @@
 <template>
   <div id="app">
-    <div class="list-container">
-      <virtualized-list :items="list" :item-height="itemH">
-        <template v-slot="provided">
+    <input type="text" id="listHeight" v-model="listHeight" label="Container height"><br>
+    <input type="text" id="itemHeight" v-model.number="itemH" label="Item height"><br>
+    <input type="text" id="bench" v-model.number="bench" label="Bench"><br><br>
+
+    <div class="list-container" :style="{'height': listH}">
+      <virtualized-list :items="list"
+                        :item-height="itemH"
+                        :bench="bench"
+                        ref="vlist"
+      >
+        <template v-slot="data">
           <div class="item">
-            static text - {{ provided.content }}
+            static text - {{ data.content }}
           </div>
         </template>
       </virtualized-list>
     </div>
+
   </div>
 </template>
 
@@ -19,7 +28,19 @@ export default {
 
     return {
       list: fillArrayWithNumbers(15000).map(i => ({id: i, content: "content-" + i})),
-      itemH: 25
+      itemH: 25,
+      bench: 5,
+      listHeight: 500
+    }
+  },
+  computed: {
+    listH() {
+      return this.listHeight + "px";
+    }
+  },
+  watch: {
+    listH() {
+      this.$refs.vlist.update();
     }
   }
 }
@@ -35,6 +56,6 @@ export default {
 }
 
 .list-container {
-  height: 500px;
+  /* height: 500px; */
 }
 </style>

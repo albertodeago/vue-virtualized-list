@@ -72,6 +72,14 @@ export default {
             return Math.min(this.items.length, this.lastItemToRender + this.bench);
         }
     },
+
+    watch: {
+        /**
+         * If the height of the items changes we need to recalculate the visible items and
+         * re-render if needed
+         */
+        itemHeight() {
+            this.update();
         }
     },
 
@@ -86,6 +94,24 @@ export default {
     },
 
     methods: {
+
+        /**
+         * Triggers an update.
+         * Fake a scroll to recalculate the visible items
+         */
+        update() {
+            this.$nextTick(() => {
+                this.onScroll({
+                    target: {
+                        scrollTop: this.scrollTop
+                    }
+                });
+            })
+        },
+
+        /**
+         * @param evt - the scroll event 
+         */
         onScroll(evt) {
             this.scrollTop = evt.target.scrollTop;
             this.firstItemToRender = Math.floor(this.scrollTop / this.itemHeight);
