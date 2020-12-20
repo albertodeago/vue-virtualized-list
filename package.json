@@ -14,7 +14,7 @@
     "test:e2e": "vue-cli-service test:e2e --headless",
     "test:e2e:w": "vue-cli-service test:e2e",
     "demo": "vue-cli-service demo",
-    "docs": "npm run docs:serve",
+    "docs": "npm run docs:dev",
     "prepublish": "vue-cli-service build",
     "start": "vue-cli-service serve"
   },
