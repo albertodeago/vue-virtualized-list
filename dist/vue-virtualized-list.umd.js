@@ -1,5 +1,5 @@
 /*!
- * vue-virtualized-list v0.1.0-rc.1 
+ * vue-virtualized-list v0.1.0 
  * (c) 2020 albertodeagostini.dev@gmail.com
  * Released under the MIT License.
  */
