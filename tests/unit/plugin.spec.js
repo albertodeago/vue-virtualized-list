@@ -71,7 +71,7 @@ describe('VirtualizedList', () => {
 
   it("should render the list items", () => {
     wrapper = createWrapper({})
-    // const innerWrapper = wrapper.find(".vue-virtualized-list")
+
     const itemsWrapper = wrapper.findAll(".item");
     expect(itemsWrapper.length).toBe(3)
   })
@@ -85,8 +85,6 @@ describe('VirtualizedList', () => {
     }, createSlot: function(props) {
       return this.$createElement("li", {attrs: {id: props.id}, class: "item"}, props.content)
     }});
-    // const innerWrapper = wrapper.find(".vue-virtualized-list")
-    // console.log(innerWrapper.html())
     
     items.forEach(item => {
       expect(wrapper.contains(`#${item.id}.item`)).toBe(true)
