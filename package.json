@@ -32,12 +32,12 @@
     "core-js": "^3.4.4"
   },
   "devDependencies": {
+    "@panelbear/vuepress-plugin-panelbear": "^1.0.0",
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-e2e-cypress": "^4.1.0",
     "@vue/cli-plugin-unit-jest": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
     "@vue/test-utils": "1.0.0-beta.29",
-    "@vuepress/plugin-google-analytics": "1.7.1",
     "@vuepress/plugin-register-components": "1.7.1",
     "vue": "2.6.12",
     "vue-cli-plugin-p11n": "^0.4.0",

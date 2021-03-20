@@ -3,10 +3,11 @@ module.exports = {
     plugins: [
         '@vuepress/last-updated',
         [
-          '@vuepress/google-analytics',
-          {
-            'ga': 'UA-169425110-1'
-          }
-        ]
-      ],
+            '@panelbear/vuepress-plugin-panelbear',
+            {
+              site: 'DYfZ2tZjAbS', // Your Site ID
+              debug: false, // Enable if you wish to send events from localhost / log to console
+            },
+        ],
+    ],
 }
