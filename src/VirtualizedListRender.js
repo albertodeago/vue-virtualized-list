@@ -124,14 +124,14 @@ export default {
          */
         getRenderedItems(h) {
             let toRender = this.items.slice(this.firstToRender, this.lastToRender);
-            return toRender.map((item, index) => h("div", {
+            return toRender.map((item, i) => h("div", {
                 style: {
                     position: "absolute",
                     left: 0,
                     right: 0,
-                    top: (this.firstToRender + index) * this.itemHeight + "px"
+                    top: (this.firstToRender + i) * this.itemHeight + "px"
                 }
-            }, this.$scopedSlots.default({ item, index })));
+            }, this.$scopedSlots.default({ item, index: i + this.firstToRender })));
         }
     },
 
