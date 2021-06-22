@@ -1,6 +1,6 @@
 /*!
- * vue-virtualized-list v0.1.0 
- * (c) 2020 albertodeagostini.dev@gmail.com
+ * vue-virtualized-list v1.0.0 
+ * (c) 2021 albertodeagostini.dev@gmail.com
  * Released under the MIT License.
  */
 'use strict';
@@ -49,9 +49,9 @@ var require$$0 = {
     },
 
     /**
-     * Indicates the amount of elements not visible to render. They are kind of useful 
+     * Indicates the amount of elements not visible to render. They are kind of useful
      * if the user scrolls very fast or in similar cases.
-     * In my tests 5 seems to be ideal most of the times 
+     * In my tests 5 seems to be ideal most of the times
      */
     bench: {
       type: Number,
@@ -112,7 +112,7 @@ var require$$0 = {
     },
 
     /**
-     * @param evt - the scroll event 
+     * @param evt - the scroll event
      */
     onScroll: function onScroll(evt) {
       this.scrollTop = evt.target.scrollTop;
@@ -122,21 +122,24 @@ var require$$0 = {
 
     /**
      * Return the VNode of the elements to render
-     * @param {Function} h - Vue render function 
+     * @param {Function} h - Vue render function
      */
     getRenderedItems: function getRenderedItems(h) {
       var _this2 = this;
 
       var toRender = this.items.slice(this.firstToRender, this.lastToRender);
-      return toRender.map(function (item, i) {
+      return toRender.map(function (item, index) {
         return h("div", {
           style: {
             position: "absolute",
             left: 0,
             right: 0,
-            top: (_this2.firstToRender + i) * _this2.itemHeight + "px"
+            top: (_this2.firstToRender + index) * _this2.itemHeight + "px"
           }
-        }, _this2.$scopedSlots.default(item));
+        }, _this2.$scopedSlots.default({
+          item: item,
+          index: index
+        }));
       });
     }
   },

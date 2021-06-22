@@ -10,9 +10,9 @@
                         :bench="bench"
                         ref="vlist"
       >
-        <template v-slot="data">
+        <template v-slot="{ item, index }">
           <div class="item">
-            static text - {{ data.content }}
+            static text - #{{index}} - {{ item.content }}
           </div>
         </template>
       </virtualized-list>

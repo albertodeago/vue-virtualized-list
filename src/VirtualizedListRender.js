@@ -45,9 +45,9 @@ export default {
         },
 
         /**
-         * Indicates the amount of elements not visible to render. They are kind of useful 
+         * Indicates the amount of elements not visible to render. They are kind of useful
          * if the user scrolls very fast or in similar cases.
-         * In my tests 5 seems to be ideal most of the times 
+         * In my tests 5 seems to be ideal most of the times
          */
         bench: {
             type: Number,
@@ -89,7 +89,7 @@ export default {
     mounted() {
         this.firstItemToRender = 0;
         this.lastItemToRender = Math.floor(this.$el.clientHeight / this.itemHeight);
-        
+
         this.$el.addEventListener("scroll", this.onScroll, false)
     },
 
@@ -110,7 +110,7 @@ export default {
         },
 
         /**
-         * @param evt - the scroll event 
+         * @param evt - the scroll event
          */
         onScroll(evt) {
             this.scrollTop = evt.target.scrollTop;
@@ -120,18 +120,18 @@ export default {
 
         /**
          * Return the VNode of the elements to render
-         * @param {Function} h - Vue render function 
+         * @param {Function} h - Vue render function
          */
         getRenderedItems(h) {
             let toRender = this.items.slice(this.firstToRender, this.lastToRender);
-            return toRender.map((item, i) => h("div", {
+            return toRender.map((item, index) => h("div", {
                 style: {
                     position: "absolute",
                     left: 0,
                     right: 0,
-                    top: (this.firstToRender + i) * this.itemHeight + "px"
+                    top: (this.firstToRender + index) * this.itemHeight + "px"
                 }
-            }, this.$scopedSlots.default(item)));
+            }, this.$scopedSlots.default({ item, index })));
         }
     },
 
