@@ -1,12 +1,12 @@
 # vue-virtualized-list
 
-A virtual list. Useful when you need to show lange amount of data.
+A virtual list. Useful when you need to show large amount of data.
 It only render the DOM elements it needs.
 It has less functionality compared to other virtual list libraries but it's **under 5kb** before gzip
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/2e0807f3-0bda-4804-94ec-b63aef0e4834/deploy-status)](https://app.netlify.com/sites/vue-virtualized-list/deploys)
 
-[Demo and Documetantion](https://vue-virtualized-list.netlify.com)
+[Demo and Documentation](https://vue-virtualized-list.netlify.com)
 
 
 ## Getting started
@@ -40,9 +40,9 @@ export default {
 Using it
 ``` html
 <virtualized-list :items="list" :item-height="itemH">
-    <template v-slot="provided">
+    <template v-slot="{ item, index}">
         <div class="my-item-class">
-            {{provided.id}}: {{ provided.content }}
+           #{{ index }} {{item.id}}: {{ item.content }}
         </div>
     </template>
 </virtualized-list>
@@ -90,6 +90,13 @@ It does not emit any event
 
 
 ## Changelog
+
+### 1.0.0
+
+#### New features
+ - Index is passed to slot scope
+#### Breaking change
+ - Migrating from 0.1.0 :replace `provided` by `provided.item` or replace `v-slot="provided"` by `v-slot="{ item }"` then use `item`
 
 ### 0.1.0
 

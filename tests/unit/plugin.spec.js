@@ -83,11 +83,10 @@ describe('VirtualizedList', () => {
       itemHeight: 50,
       innerContainerEl: "ul"
     }, createSlot: function(props) {
-      return this.$createElement("li", {attrs: {id: props.id}, class: "item"}, props.content)
+      return this.$createElement("li", {attrs: {id: props.item.id+'_'+props.index}, class: "item"}, props.content)
     }});
-    
-    items.forEach(item => {
-      expect(wrapper.contains(`#${item.id}.item`)).toBe(true)
+    items.forEach((item, index) => {
+      expect(wrapper.contains(`#${ item.id }_${ index }.item`)).toBe(true)
     })
   })
 })
