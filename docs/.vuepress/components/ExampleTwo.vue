@@ -1,10 +1,10 @@
 <template>
     <div style="height: 350px; text-align: center">
       <virtualized-list :items="list" :item-height="itemH">
-        <template v-slot="provided">
+        <template v-slot="{ item, index }">
           <div class="item">
-            <span class="item__avatar">{{ provided.avatar }}</span>
-            <span class="item__name">{{ provided.name }}</span>
+            <span class="item__avatar">{{ item.avatar }}</span>
+            <span class="item__name">{{ item.name }} {{ index }}</span>
           </div>
         </template>
       </virtualized-list>
@@ -26,7 +26,7 @@ export default {
             list: fillArrayWithNumbers(10000).map(i => ({
               id: i, 
               avatar: createRandomStr(), 
-              name: "User " + i
+              name: "User"
             })),
             itemH: 50
         }

@@ -1,9 +1,9 @@
 <template>
     <div style="height: 300px; text-align: center">
       <virtualized-list :items="list" :item-height="itemH">
-        <template v-slot="provided">
+        <template v-slot="{ item }">
           <div class="item">
-            I'm item number {{ provided.id }}
+            I'm item number {{ item.id }}
           </div>
         </template>
       </virtualized-list>

@@ -66,13 +66,27 @@ It does not emit any event
 
 ### Examples
 
-```
-<virtualized-list :items="items" :itemHeight="50"></virtualized-list>
+```vue
+<virtualized-list :items="list" :item-height="itemH">
+    <template v-slot="{ item, index }">
+        <div class="item">
+        <span class="item__avatar">{{ item.avatar }}</span>
+        <span class="item__name">{{ item.name }} {{ index }}</span>
+        </div>
+    </template>
+</virtualized-list>
 ```
 <example-two></example-two>
 
 
 ## Changelog
+
+### 1.0.0
+
+#### New features
+ - Index is passed to slot scope
+#### Breaking change
+ - Migrating from 0.1.0: replace `provided` by `provided.item` or replace `v-slot="provided"` by `v-slot="{ item }"` then use `item`
 
 ### 0.1.0
 

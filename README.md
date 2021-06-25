@@ -96,7 +96,7 @@ It does not emit any event
 #### New features
  - Index is passed to slot scope
 #### Breaking change
- - Migrating from 0.1.0 :replace `provided` by `provided.item` or replace `v-slot="provided"` by `v-slot="{ item }"` then use `item`
+ - Migrating from 0.1.0: replace `provided` by `provided.item` or replace `v-slot="provided"` by `v-slot="{ item }"` then use `item`
 
 ### 0.1.0
 
