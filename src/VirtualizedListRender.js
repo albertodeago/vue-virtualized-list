@@ -118,10 +118,10 @@ export default {
             this.lastItemToRender = this.firstItemToRender + Math.ceil(this.$el.clientHeight / this.itemHeight);
         },
         scrollTo(index){
-            this.firstItemToRender =index;
+            this.firstItemToRender = index;
             this.lastItemToRender = this.firstItemToRender + Math.ceil(this.$el.clientHeight / this.itemHeight);
-            this.scrollTop = index * this.itemHeight;
-
+            this.scrollTop = this.firstItemToRender * this.itemHeight;
+            this.$refs.renderScrollList.scrollTo(0, this.scrollTop);
         },
         /**
          * Return the VNode of the elements to render
@@ -156,7 +156,8 @@ export default {
                 overflow: "auto",
                 position: "relative",
                 display: "block"
-            }
+            },
+            ref:'renderScrollList'
         }, [renderScroll]);
         return renderList;
     }
