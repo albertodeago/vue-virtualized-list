@@ -126,17 +126,17 @@ var VirtualizedListRender = {
       var _this2 = this;
 
       var toRender = this.items.slice(this.firstToRender, this.lastToRender);
-      return toRender.map(function (item, index) {
+      return toRender.map(function (item, i) {
         return h("div", {
           style: {
             position: "absolute",
             left: 0,
             right: 0,
-            top: (_this2.firstToRender + index) * _this2.itemHeight + "px"
+            top: (_this2.firstToRender + i) * _this2.itemHeight + "px"
           }
         }, _this2.$scopedSlots.default({
           item: item,
-          index: index
+          index: i + _this2.firstToRender
         }));
       });
     }
