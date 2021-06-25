@@ -14,10 +14,11 @@
           >Bench
           <input type="text" id="bench" v-model.number="bench" />
         </label>
-        <label
-          >Scroll to index 100
-          <input type="button" @click="$refs.vlist.scrollTo(100)" />
-        </label>
+        <input
+          type="button"
+          @click="$refs.vlist.scrollTo(100)"
+          value="Scroll to index 100"
+        />
       </div>
     </div>
     <div>
@@ -89,6 +90,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: end;
+  gap: 0.5em;
 }
 .props {
   display: flex;
