@@ -1,5 +1,5 @@
 /*!
- * vue-virtualized-list v1.0.0 
+ * vue-virtualized-list v1.1.0 
  * (c) 2021 albertodeagostini.dev@gmail.com
  * Released under the MIT License.
  */
@@ -120,7 +120,8 @@ var VirtualizedListRender = {
     scrollTo: function scrollTo(index) {
       this.firstItemToRender = index;
       this.lastItemToRender = this.firstItemToRender + Math.ceil(this.$el.clientHeight / this.itemHeight);
-      this.scrollTop = index * this.itemHeight;
+      this.scrollTop = this.firstItemToRender * this.itemHeight;
+      this.$refs.renderScrollList.scrollTo(0, this.scrollTop);
     },
 
     /**
@@ -162,7 +163,8 @@ var VirtualizedListRender = {
         overflow: "auto",
         position: "relative",
         display: "block"
-      }
+      },
+      ref: 'renderScrollList'
     }, [renderScroll]);
     return renderList;
   }
