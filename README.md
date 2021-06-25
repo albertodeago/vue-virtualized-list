@@ -95,7 +95,7 @@ It does not emit any event
 ### 1.1.0
 
 #### New features
- - scrollTo(index)
+ - Add new API `scrollTo(index)`
 
 ### 1.0.0
 

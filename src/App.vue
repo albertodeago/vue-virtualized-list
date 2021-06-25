@@ -15,6 +15,7 @@
           <input type="text" id="bench" v-model.number="bench" />
         </label>
         <input
+          id="scroll-to-btn"
           type="button"
           @click="$refs.vlist.scrollTo(100)"
           value="Scroll to index 100"

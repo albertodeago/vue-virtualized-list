@@ -29,8 +29,8 @@ describe("vue-virtualized-list", () => {
 
   it("should render the right items at the beginning", () => {
     cy.visit("/")
-    cy.get(".item:first").contains("static text - content-0")
-    cy.get(".item:nth(20)").contains("static text - content-20")
+    cy.get(".item:first").contains("static text - #0 - content-0")
+    cy.get(".item:nth(20)").contains("static text - #20 - content-20")
   })
 
   it("should render the right items after scroll", () => {
@@ -38,8 +38,8 @@ describe("vue-virtualized-list", () => {
     cy.get(".vue-virtualized-list__scroll")
       .scrollTo(0, 1000)
       .wait(250)
-      .get(".item:first").contains("static text - content-35")
-      .get(".item:nth(25)").contains("static text - content-60")
+      .get(".item:first").contains("static text - #35 - content-35")
+      .get(".item:nth(25)").contains("static text - #60 - content-60")
   })
 
   it("should render 5 elements as bench before the first and after the last visible ones", () => {
@@ -55,7 +55,7 @@ describe("vue-virtualized-list", () => {
       .get(".item:nth(-6)").should("be.visible")
   })
 
-  it.only("should render the specified amount of item as bench", () => {
+  it("should render the specified amount of item as bench", () => {
     cy.visit("/")
     cy.get(".vue-virtualized-list__scroll")
       .scrollTo(0, 1000)
@@ -64,5 +64,13 @@ describe("vue-virtualized-list", () => {
       .type("{backspace}10")
     cy.get(".vue-virtualized-list__scroll")
     .get(".item").should("have.length", 40)
+  })
+
+  it("should let the user to scroll to a specific item with the 'scrollTo' API", () => {
+      cy.visit("/")
+        .get("#scroll-to-btn")
+        .click()
+        .get(".vue-virtualized-list__scroll")
+        .get(".item:nth(5)").contains("static text - #100 - content-100") // 5 because of the bench
   })
 })
