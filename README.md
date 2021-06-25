@@ -87,9 +87,15 @@ It does not emit any event
 | Name    | parameters | return value | Description                     |
 |---------|------------|--------------|---------------------------------|
 | update  | none       | undefined    | Tells the component to recalculate the visible items. This can be useful in certain cases, for example if you change the height of the container |
+| scrollTo  | index (Number)       | undefined    | Scroll to the given index |
 
 
 ## Changelog
+
+### 1.1.0
+
+#### New features
+ - scrollTo(index)
 
 ### 1.0.0
 
