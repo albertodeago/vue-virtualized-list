@@ -123,6 +123,11 @@
           this.firstItemToRender = Math.floor(this.scrollTop / this.itemHeight);
           this.lastItemToRender = this.firstItemToRender + Math.ceil(this.$el.clientHeight / this.itemHeight);
         },
+        scrollTo: function scrollTo(index) {
+          this.firstItemToRender = index;
+          this.lastItemToRender = this.firstItemToRender + Math.ceil(this.$el.clientHeight / this.itemHeight);
+          this.scrollTop = index * this.itemHeight;
+        },
 
         /**
          * Return the VNode of the elements to render
