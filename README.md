@@ -8,6 +8,8 @@ It has less functionality compared to other virtual list libraries but it's **un
 
 [Demo and Documentation](https://vue-virtualized-list.netlify.com)
 
+<a href="https://www.buymeacoffee.com/albertodeago" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
 
 ## Getting started
 
